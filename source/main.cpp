@@ -28,23 +28,30 @@ int main(void)
 
     std::cout << "OpenGL : " << GLVersion.major << "." << GLVersion.minor << std::endl;
 
-    GLfloat points[] = {
-        0.0f,0.0f,0.0f
+    GLfloat verts[] =
+    {
+        0.0f,  0.5f,  0.0f,
+        1.0f, -1.0f,  0.0f,
+        -1.0f, -1.0f,  0.0f
     };
 
-    GLuint VBO;
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
+    GLuint vboID;
+
+    glGenBuffers(1, &vboID);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
-        glDrawArrays(GL_POINT, 0, 1);
-        glDisableVertexAttribArray(0);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
