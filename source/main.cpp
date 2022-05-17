@@ -28,9 +28,9 @@ int main(void)
 
     std::cout << "OpenGL : " << GLVersion.major << "." << GLVersion.minor << std::endl;
 
-    GLfloat verts[] =
+    GLfloat points[] =
     {
-        0.0f,  0.5f,  0.0f,
+        0.0f,  1.0f,  0.0f,
         1.0f, -1.0f,  0.0f,
         -1.0f, -1.0f,  0.0f
     };
@@ -41,7 +41,7 @@ int main(void)
 
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
 
